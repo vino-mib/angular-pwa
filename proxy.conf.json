@@ -1,0 +1,8 @@
+{
+  "/kws/api": {
+    "target": "https://sfm20.dev.sfm.syncroncloud.com",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
