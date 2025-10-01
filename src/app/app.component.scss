@@ -1,0 +1,226 @@
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+header h1 {
+  color: #1976d2;
+  margin-bottom: 10px;
+  font-size: 2.5em;
+}
+
+.status-bar {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.status-badge {
+  padding: 5px 15px;
+  border-radius: 15px;
+  background: #f5f5f5;
+  font-size: 0.9em;
+  border: 2px solid #ddd;
+}
+
+.status-badge.installed {
+  background: #e8f5e8;
+  border-color: #4caf50;
+}
+
+.status-badge.online {
+  background: #e8f5e8;
+  border-color: #4caf50;
+}
+
+.feature-card {
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: 1px solid #e0e0e0;
+}
+
+.feature-card h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.5em;
+}
+
+.search-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.search-input:focus {
+  border-color: #1976d2;
+  outline: none;
+}
+
+.btn-primary, .btn-secondary {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.btn-primary {
+  background: #1976d2;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #1565c0;
+}
+
+.btn-secondary {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.btn-secondary:hover {
+  background: #e0e0e0;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #1976d2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+  color: #d32f2f;
+}
+
+.info-bar {
+  display: flex;
+  justify-content: space-between;
+  background: #e3f2fd;
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.country-card {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 15px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.country-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.country-card h3 {
+  margin: 0 0 8px 0;
+  color: #1976d2;
+  font-size: 1.1em;
+}
+
+.official-name {
+  margin: 0;
+  color: #666;
+  font-size: 0.9em;
+  line-height: 1.3;
+}
+
+.install-instructions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.instruction {
+  padding: 12px;
+  background: white;
+  border-radius: 6px;
+  border-left: 4px solid #1976d2;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+ul li:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 15px;
+  }
+  
+  .status-bar {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .search-container {
+    flex-direction: column;
+  }
+  
+  .info-bar {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .countries-grid {
+    grid-template-columns: 1fr;
+  }
+}

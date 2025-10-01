@@ -1,0 +1,93 @@
+<div class="app-container">
+  <header>
+    <h1>🌍 Countries PWA</h1>
+    <p>Progressive Web App with Countries API Caching</p>
+    <div class="status-bar">
+      <span class="status-badge" [class.online]="isOnline">
+        {{ isOnline ? '🟢 Online' : '🔴 Offline' }}
+      </span>
+      <span class="status-badge" [class.installed]="isPwaMode">
+        📱 {{ isPwaMode ? 'PWA Mode' : 'Browser Mode' }}
+      </span>
+    </div>
+  </header>
+  
+  <main>
+    <!-- PWA Features Card -->
+    <div class="feature-card">
+      <h2>🚀 PWA Features</h2>
+      <ul>
+        <li>✅ Installable on device</li>
+        <li>✅ Works offline with cached data</li>
+        <li>✅ Countries API caching</li>
+        <li>✅ Automatic app updates</li>
+      </ul>
+    </div>
+
+    <!-- Countries Section -->
+    <div class="feature-card">
+      <h2>🌏 Countries Data</h2>
+      
+      <!-- Search -->
+      <div class="search-container">
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (input)="onSearch()"
+          placeholder="Search countries..." 
+          class="search-input"
+        >
+        <button (click)="refreshCountries()" class="btn-secondary">
+          🔄 Refresh
+        </button>
+      </div>
+
+      <!-- Loading State -->
+      <div *ngIf="loading$ | async" class="loading">
+        <div class="spinner"></div>
+        <p>Loading countries from REST API...</p>
+      </div>
+
+      <!-- Error State -->
+      <div *ngIf="error$ | async as error" class="error">
+        <p>❌ {{ error }}</p>
+        <button (click)="loadCountries()" class="btn-primary">
+          Try Again
+        </button>
+      </div>
+
+      <!-- Countries Count -->
+      <div *ngIf="!(loading$ | async) && !(error$ | async)" class="info-bar">
+        <span>📊 Total Countries: {{ totalCountries }}</span>
+        <span>🔍 Filtered: {{ (filteredCountries$ | async)?.length || 0 }}</span>
+      </div>
+
+      <!-- Countries List -->
+      <div class="countries-grid" *ngIf="!(loading$ | async) && !(error$ | async)">
+        <div 
+          *ngFor="let country of filteredCountries$ | async; trackBy: trackByCountry" 
+          class="country-card"
+        >
+          <h3>{{ country.name.common }}</h3>
+          <p class="official-name">{{ country.name.official }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Install Instructions -->
+    <div class="feature-card" *ngIf="!isPwaMode">
+      <h2>📱 Install This App</h2>
+      <div class="install-instructions">
+        <div class="instruction">
+          <strong>Chrome/Edge:</strong> Look for the install icon (⊕) in the address bar
+        </div>
+        <div class="instruction">
+          <strong>Safari:</strong> Tap Share button → "Add to Home Screen"
+        </div>
+        <div class="instruction">
+          <strong>Firefox:</strong> Look for the install banner or use menu options
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
